@@ -72,6 +72,28 @@ if( destinationNameB64 && !destinationNameZIP )
     // On donne le chemin et le nouveau nom du fichier encodé
     let sourceEncoded = `${destinationNameB64}`;
 
+    // On encode le fichier
+    let sourceFileEncoded = btoa(sourceFile);
+
     // On écrit dans le dossier "results" le fichier .txt du du fichier encodé
     fs.writeFileSync(sourceEncoded, sourceFileEncoded);
 }
+
+// Deuxième cas zippage du fichier mais pas d'encodage
+if( destinationNameZIP && !destinationNameB64 )
+{
+    console.log(`Vous allez zipper le fichier ${sourceName}, il vous est aussi d'encoder le fichier en base 64 !`);
+
+    // On lit le contenu de notre fichier
+    let sourceFile = fs.readFileSync(sourceName);
+
+    // On initialise l'objet archive
+    let zip = new AdmZip();
+
+    // On ajoute le fichier est son contenue à l'aide d'un Buffer
+    zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
+
+    // On zip le tout avec le nom de notre archive
+    zip.writeZip(destinationNameZIP);
+}
+
