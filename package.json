@@ -1,0 +1,27 @@
+{
+  "name": "encode_b64_zip",
+  "version": "1.0.0",
+  "description": "Création d'un programme d'encodage en base64 et de zip de fichier en JavaScript",
+  "main": "encode_b64_zip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RexT2507/Encode_B64_ZIP.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "JS",
+    "base64",
+    "B64",
+    "ZIP",
+    "zip"
+  ],
+  "author": "RexT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RexT2507/Encode_B64_ZIP/issues"
+  },
+  "homepage": "https://github.com/RexT2507/Encode_B64_ZIP#readme"
+}
