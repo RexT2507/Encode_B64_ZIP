@@ -123,3 +123,9 @@ if( destinationNameB64 && destinationNameZIP )
     // On zip le tout avec le nom de notre archive
     zip.writeZip(destinationNameZIP);
 }
+
+// S'il n'y a aucun argument
+if( !destinationNameB64 && !destinationNameZIP)
+{
+    console.log("Vous n'avez saisi aucun argument");
+}
