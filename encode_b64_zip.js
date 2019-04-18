@@ -42,3 +42,20 @@ function grab(flag)
 // Définition des flags pour l'encodage et le zippage
 const destinationNameB64 = grab('--base64');
 const destinationNameZIP = grab('--zip');
+
+/****POUR TESTER SI LE NOM DU FICHIER EST BIEN RECUPERE****/
+    /*
+    console.log(process.argv[2]);
+    */
+/**********************************************************/
+
+/****POUR TESTER LA POSITION DES ARGUMENTS****/
+    /*
+    process.argv.forEach( function(val, index){
+        
+        console.log(`${index}: ${val}`);
+
+    });
+    */
+/*********************************************/
+
