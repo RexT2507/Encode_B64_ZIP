@@ -42,6 +42,7 @@ function grab(flag)
 // Définition des flags pour l'encodage et le zippage
 const destinationNameB64 = grab('--base64');
 const destinationNameZIP = grab('--zip');
+const destinationNameB64_ZIP = grab('--base64_zip');
 
 /****POUR TESTER SI LE NOM DU FICHIER EST BIEN RECUPERE****/
     /*
@@ -62,7 +63,7 @@ const destinationNameZIP = grab('--zip');
 /****CAS D'UTILISATION DU PROGRAMME****/
 
 // Premier cas encodage en base64 mais pas de zip
-if( destinationNameB64 && !destinationNameZIP )
+if( destinationNameB64 && !destinationNameZIP && !destinationNameB64_ZIP )
 {
     console.log(`Vous allez encoder le fichier ${sourceName} en base64, il vous est aussi possible de le zipper !`);
 
@@ -80,7 +81,7 @@ if( destinationNameB64 && !destinationNameZIP )
 }
 
 // Deuxième cas zippage du fichier mais pas d'encodage
-if( destinationNameZIP && !destinationNameB64 )
+if( destinationNameZIP && !destinationNameB64 && !destinationNameB64_ZIP )
 {
     console.log(`Vous allez zipper le fichier ${sourceName}, il vous est aussi d'encoder le fichier en base 64 !`);
 
@@ -98,7 +99,7 @@ if( destinationNameZIP && !destinationNameB64 )
 }
 
 // Troisième cas encodage et zippage du fichier
-if( destinationNameB64 && destinationNameZIP )
+if( destinationNameB64 && destinationNameZIP && !destinationNameB64_ZIP )
 {
     console.log(`Vous allez encoder et zipper le fichier ${sourceName}`);
 
@@ -124,8 +125,32 @@ if( destinationNameB64 && destinationNameZIP )
     zip.writeZip(destinationNameZIP);
 }
 
+// Quatrième cas encodage du zip
+if( destinationNameB64_ZIP && !destinationNameB64 && !destinationNameZIP )
+{
+    console.log(`Vous allez encoder le fichier zip ${sourceName}`);
+
+    // On lit le contenu de notre pdf
+    let sourceFile = fs.readFileSync(sourceName);
+
+    // On donne le chemin et le nouveau nom du pdf encodé
+    let sourceEncoded = `${destinationNameB64_ZIP}`;
+
+    // On initialise l'objet archive
+    let zip = new AdmZip();
+
+    // On ajoute le fichier et son contenu
+    zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
+
+    // On encode le pdf
+    let sourceFileEncoded = btoa(zip.toBuffer());
+
+    // On écrit dans le dossier results le fichier .txt du pdf encodé
+    fs.writeFileSync(sourceEncoded, sourceFileEncoded);
+}
+
 // S'il n'y a aucun argument
-if( !destinationNameB64 && !destinationNameZIP)
+if( !destinationNameB64 && !destinationNameZIP && !destinationNameB64_ZIP)
 {
     console.log("Vous n'avez saisi aucun argument");
 }
