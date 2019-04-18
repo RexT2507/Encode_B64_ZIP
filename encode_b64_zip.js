@@ -59,3 +59,4 @@ const destinationNameZIP = grab('--zip');
     */
 /*********************************************/
 
+/****CAS D'UTILISATION DU PROGRAMME****/
