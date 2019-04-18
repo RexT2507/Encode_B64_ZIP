@@ -29,3 +29,16 @@ const AdmZip = require('adm-zip');
 
 */
 const sourceName = process.argv[2];
+
+/****CREATION DU SYSTEME DE FLAG****/
+
+// Fonction de récupération des index des process
+function grab(flag)
+{
+    let index = process.argv.indexOf(flag);
+    return (index === -1) ? null : process.argv[index+1];
+}
+
+// Définition des flags pour l'encodage et le zippage
+const destinationNameB64 = grab('--base64');
+const destinationNameZIP = grab('--zip');
