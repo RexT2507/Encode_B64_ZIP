@@ -60,3 +60,18 @@ const destinationNameZIP = grab('--zip');
 /*********************************************/
 
 /****CAS D'UTILISATION DU PROGRAMME****/
+
+// Premier cas encodage en base64 mais pas de zip
+if( destinationNameB64 && !destinationNameZIP )
+{
+    console.log(`Vous allez encoder le fichier ${sourceName} en base64, il vous est aussi possible de le zipper !`);
+
+    // On lit le contenu de notre fichier
+    let sourceFile = fs.readFileSync(sourceName);
+
+    // On donne le chemin et le nouveau nom du fichier encodé
+    let sourceEncoded = `${destinationNameB64}`;
+
+    // On écrit dans le dossier "results" le fichier .txt du du fichier encodé
+    fs.writeFileSync(sourceEncoded, sourceFileEncoded);
+}
