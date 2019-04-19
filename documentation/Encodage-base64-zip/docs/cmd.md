@@ -1,6 +1,6 @@
 # Développement en ligne de commande : Encode base64 & Zip
 
-Vous pouvez accèder au code source [ici](https://github.com/RexT2507/Encode_B64_ZIP).
+Vous pouvez accéder au code source [ici](https://github.com/RexT2507/Encode_B64_ZIP).
 
 #
 
@@ -28,11 +28,11 @@ On va définir les options du script :
 
 ![Screenshot](img/options.PNG)
 
-La construction des options d'un script nodeJS a toujours le même shémas :
+La construction des options d'un script nodejs a toujours le même schéma :
 
-* `argv[0]`    - Correspond à l'executable de NodeJS.
-* `argv[1]`    - Correspond au nom du script appelé.
-* `argv[2]`    - Correspond au nom du fichier source que l'on veut traiter.
+* `argv[0]`    - Corresponds à l'exécutable de NodeJs.
+* `argv[1]`    - Corresponds au nom du script appelé.
+* `argv[2]`    - Corresponds au nom du fichier source que l'on veut traiter.
 * Les autres argv sont les options du programme.
 
 #
@@ -41,7 +41,7 @@ La construction des options d'un script nodeJS a toujours le même shémas :
 
 #
 
-On va ajouter notre système de flag, afin de séléctionner les options de traitement que l'on veut effectuer :
+On va ajouter notre système de flag, afin de sélectionner les options de traitement que l'on veut effectuer :
 
 ![Screenshot](img/flag.PNG)
 
@@ -49,9 +49,9 @@ Dans un premier temps on va créer une fonction qui permet de récupérer les fl
 
 On définit les flags pour l'encode, le zippage et les autres :
 
-* `--base64`        - Permet d'encoder le fichier en base64.
-* `--zip`           - Permet de zipper le fichier en zip.
-* `--base64_zip`    - Permet d'encoder un point zip.
+* `--base64`        - Permets d'encoder le fichier en base64.
+* `--zip`           - Permets de zipper le fichier en zip.
+* `--base64_zip`    - Permets d'encoder un point zip.
 
 #
 
@@ -63,7 +63,7 @@ Il est important de pouvoir effectuer des tests, par exemple de savoir si on ré
 
 ![Screenshot](img/tests.PNG)
 
-Pour l'instant il faut décommanter ces tests afin de pouvoir y accèder mais pourquoi ne pas faire un flag pour appeler le test ou les tests qu'il nous faut.
+Pour l'instant il faut décommenter ces tests afin de pouvoir y accéder mais pourquoi ne pas faire un flag pour appeler le test ou les tests qu'il nous faut.
 
 #
 
@@ -88,7 +88,7 @@ Pour cela nous allons utiliser le flag --base64, nous allons donc utiliser une c
 
 #
 
-Bien évidamment le zip ne fonctionnera pas dans le premier cas. Regardons le code.
+Bien évidemment le zip ne fonctionnera pas dans le premier cas. Regardons le code.
 
 ![Screenshot](img/premier_cas.PNG)
 
@@ -104,7 +104,7 @@ Pour cela nous allons utiliser le flag --zip, nous allons donc utiliser une cond
 
 #
 
-Bien évidamment l'encodage ne fonctionnera pas dans le deuxième cas. Regardons le code.
+Bien évidemment l'encodage ne fonctionnera pas dans le deuxième cas. Regardons le code.
 
 ![Screenshot](img/deux_cas.PNG)
 
@@ -112,11 +112,11 @@ Bien évidamment l'encodage ne fonctionnera pas dans le deuxième cas. Regardons
 
 #
 
-Nous allons voir le troisième cas d'utilisation du programme on reçoit un fichier, puis on encode le fichier et on le zip, on effectue les deux taches précédantes.
+Nous allons voir le troisième cas d'utilisation du programme on reçoit un fichier, puis on encode le fichier et ont le zip, on effectue les deux tâches précédentes.
 
 #
 
-Pour cela on utilise les deux flags précédent --base64 et --zip, il y a une condition qui va vérifier que les deux balises soit à true pour effectuer les actions.
+Pour cela on utilise les deux flags précédents --base64 et --zip, il y a une condition qui va vérifier que les deux balises soient à true pour effectuer les actions.
 
 ![Screenshot](img/trois_cas.PNG)
 
@@ -128,7 +128,7 @@ Nous allons voir le quatrième cas d'utilisation du programme on reçoit un fich
 
 #
 
-Cette fonction du programme a été créer à la suite d'une demande d'un utilisateur qui ne voulais pas lancer le programme deux fois pour zipper puis pour encoder ! La fonctionnalié à donc était rajoutée ;)
+Cette fonction du programme a été créer à la suite d'une demande d'un utilisateur qui ne voulait pas lancer le programme deux fois pour zipper puis pour encoder ! La fonctionnalité a donc été rajoutée ;)
 
 #
 
@@ -140,7 +140,10 @@ Pour cela nous allons utiliser le flag --base64_zip
 
 #
 
-Il faut penser à mettre une erreur si on ne saisie aucun argument, cela va de soit !
+Il faut penser à mettre une erreur si on ne saisit aucun argument, cela va de soi !
 
 ![Screenshot](img/nothing.PNG)
+
+
+On en a fini avec la partie développement !
 
