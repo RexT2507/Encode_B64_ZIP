@@ -16,4 +16,4 @@ Vous pouvez utiliser l'application.
 
 ## Documentation complète
 
-Le [lien](https://rext2507.github.io/Encode_B64_ZIP/) de la documentation complète.
+Le lien de la documentation complète [ici](https://rext2507.github.io/Encode_B64_ZIP/).
