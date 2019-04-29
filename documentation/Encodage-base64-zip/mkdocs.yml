@@ -1,6 +1,8 @@
-site_name: Documentation du projet Encode base64 & Zip
+site_name: Doc Encode base64 & Zip
 
 nav:
     - Accueil: index.md
     - Ligne de commande: cmd.md
     - Interface graphique: graph.md
+    - Utilisation ligne de commande: user_cmd.md
+    
