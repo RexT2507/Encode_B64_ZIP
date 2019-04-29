@@ -8,7 +8,7 @@ Création d'un programme d'encodage en base64 et de zip de fichier en JavaScript
 
 + Vous devez vous rendre dans le dossier Interface_NodeJS
 + Lancez une invite de commande
-+ Tapez la commande suivante npm i
++ Tapez la commande suivante `npm i`
 
 Vous avez maintenant le dossier node_modules qui contient les modules nécessaires au fonctionnement.
 
