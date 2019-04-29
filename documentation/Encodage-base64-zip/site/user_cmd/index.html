@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Utilisation ligne de commande - Doc Encode base64 & Zip</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="..">Doc Encode base64 & Zip</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="..">Accueil</a>
+                            </li>
+                            <li >
+                                <a href="../cmd/">Ligne de commande</a>
+                            </li>
+                            <li >
+                                <a href="../graph/">Interface graphique</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Utilisation ligne de commande</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../graph/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a rel="prev" >
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#utilisation-du-programme-en-ligne-de-commande-encode-base64-zip">Utilisation du programme en ligne de commande : Encode base64 &amp; Zip</a></li>
+        <li class="main "><a href="#lancer-le-programme">Lancer le programme</a></li>
+        <li class="main "><a href="#premier-cas-encodage-en-base64-mais-pas-de-zip">Premier cas encodage en base64 mais pas de zip</a></li>
+        <li class="main "><a href="#deuxieme-cas-zippage-du-fichier-mais-pas-dencodage">Deuxième cas zippage du fichier mais pas d'encodage</a></li>
+        <li class="main "><a href="#troisieme-cas-encodage-et-zippage-du-fichier">Troisième cas encodage et zippage du fichier</a></li>
+        <li class="main "><a href="#quatrieme-cas-encodage-du-zip">Quatrième cas encodage du zip</a></li>
+        <li class="main "><a href="#retour-en-cas-dargument-absent">Retour en cas d'argument absent</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="utilisation-du-programme-en-ligne-de-commande-encode-base64-zip">Utilisation du programme en ligne de commande : Encode base64 &amp; Zip</h1>
+<h1 id="_1"></h1>
+<p>Nous allons voir comment utiliser le programme en ligne de commande, avant toute chose assurez-vous d'avoir bien lu le readme qui contient toute la procédure d'installation des logiciels nécessaires au fonctionnement du logiciel.</p>
+<h2 id="lancer-le-programme">Lancer le programme</h2>
+<p>Dans un premier temps allez dans le dossier ou vous avez téléchargé le programme et ouvrez une invite de commande.</p>
+<p><img alt="Screenshot" src="../img/invite_cmd.PNG" /></p>
+<p>On va maintenant placer les arguments dans le bon ordre, pour commencer NodeJs, puis le nom du programme, le fichier que l'on veut traiter et enfin les options de traitement que l'on veut lui appliquer.</p>
+<p><img alt="Screenshot" src="../img/arguments.PNG" /></p>
+<p>Voilà nous avons placé nos arguments, nous allons voir par la suite les différentes options que l'on peut utiliser dans ce programme. Il est important de noter que l'on peut lire un fichier de n'importe où et l'écrire n'importe où, il suffit de préciser le chemin.</p>
+<p>Par exemple :</p>
+<pre><code>node encode_b64_zip.js C:\Users\BAM\Documents\exemple_fichier.pdf
+</code></pre>
+<h1 id="_2"></h1>
+<h2 id="premier-cas-encodage-en-base64-mais-pas-de-zip">Premier cas encodage en base64 mais pas de zip</h2>
+<h1 id="_3"></h1>
+<p>Pour encoder un fichier en base64, il suffit de donner le fichier en entrée suivi de l'option --base64 suivit du nom de fichier.</p>
+<p><img alt="Screenshot" src="../img/base64.PNG" /></p>
+<p>Comme je l'ai dit précédemment il est possible de donner le dossier de destination en plus du nom de fichier en sortie.</p>
+<p>Par exemple :</p>
+<pre><code>node encode_b64_zip.js exemple_fichier.pdf --base64 C:\Users\BAM\Documents\resultats\exemple.txt
+</code></pre>
+<p>On appuie sur entrée pour commencer le traitement</p>
+<p><img alt="Screenshot" src="../img/base64_ok.PNG" /></p>
+<p>Voilà le traitement c'est bien effectué, on peut lire le message nous le confirmant. </p>
+<p>Voyons le résultat : </p>
+<p><img alt="Screenshot" src="../img/fic.PNG" /></p>
+<p>Nous avons bien nos deux fichiers, le fichier source qui est intact et le fichier.txt qui contient le fichier précédent encodé en base64.</p>
+<p>Regardons le contenu pour être sûr :</p>
+<p><img alt="Screenshot" src="../img/fic_base64.PNG" /></p>
+<p>Ok le fichier est bien encodé :)</p>
+<h1 id="_4"></h1>
+<h2 id="deuxieme-cas-zippage-du-fichier-mais-pas-dencodage">Deuxième cas zippage du fichier mais pas d'encodage</h2>
+<h1 id="_5"></h1>
+<p>Pour zipper un fichier il suffit de donner le fichier en entrée suivi de l'option --zip suivit du nom de fichier.</p>
+<p><img alt="Screenshot" src="../img/zip.PNG" /></p>
+<p>On appuie sur entrée pour commencer le traitement</p>
+<p><img alt="Screenshot" src="../img/zip_ok.PNG" /></p>
+<p>Voilà le traitement c'est bien effectué, on peut lire le message nous le confirmant. </p>
+<p>Voyons le résultat : </p>
+<p><img alt="Screenshot" src="../img/fic2.PNG" /></p>
+<p>On retrouve bien notre fichier source dans le zip !</p>
+<p><img alt="Screenshot" src="../img/zip_open.PNG" /></p>
+<h2 id="troisieme-cas-encodage-et-zippage-du-fichier">Troisième cas encodage et zippage du fichier</h2>
+<h1 id="_6"></h1>
+<p>Pour encoder un fichier et le zipper, effectuer les deux actions précédentes en sommes ;)</p>
+<h1 id="_7"></h1>
+<p>Il suffit d'utiliser les deux commandes précédentes en une seule !</p>
+<p><img alt="Screenshot" src="../img/flag_deux.PNG" /></p>
+<p>On appuie sur entrée pour commencer le traitement</p>
+<p><img alt="Screenshot" src="../img/flag_deux_ok.PNG" /></p>
+<p>Voilà le traitement c'est bien effectué, on peut lire le message nous le confirmant. </p>
+<p>Voyons le résultat :</p>
+<p><img alt="Screenshot" src="../img/fic3.PNG" /></p>
+<h2 id="quatrieme-cas-encodage-du-zip">Quatrième cas encodage du zip</h2>
+<h1 id="_8"></h1>
+<p>Cette fonction du programme a été créer à la suite d'une demande d'un utilisateur qui ne voulait pas lancer le programme deux fois pour zipper puis pour encoder ! La fonctionnalité a donc été rajoutée ;)</p>
+<h1 id="_9"></h1>
+<p>Pour ce faire on va taper la commande --base64_zip suivi du nom de fichier que l'on veut en sortie</p>
+<p><img alt="Screenshot" src="../img/base64_zip.PNG" /></p>
+<p>Voilà le traitement c'est bien effectué, on peut lire le message nous le confirmant.</p>
+<p><img alt="Screenshot" src="../img/base64_zip_ok.PNG" /></p>
+<p>Voyons le résultat :</p>
+<p><img alt="Screenshot" src="../img/base64_zip_result.PNG" /></p>
+<p>Regardons le contenu de notre fichier texte pour être parfaitement sûr :</p>
+<p><img alt="Screenshot" src="../img/base64_zip_result2.PNG" /></p>
+<h2 id="retour-en-cas-dargument-absent">Retour en cas d'argument absent</h2>
+<h1 id="_10"></h1>
+<p>Si on ne saisit pas d'argument dans notre ligne de commande nous verrons le message d'erreur suivant :</p>
+<p><img alt="Screenshot" src="../img/no_arg.PNG" /></p>
+<p>Rien ne se passe......</p>
+<h1 id="_11"></h1>
+<p>Voilà vous savez utiliser le programme en ligne de commande.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
