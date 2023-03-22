@@ -1,156 +1,61 @@
-/*********** DÉVELOPPÉ PAR REXT ************/
-/*                                          */
-/*      Pourquoi ce programme ?             */
-/*      Parce que ça peut servir XD         */
-/*                                          */
-/********************************************/
-
-
-
-
-/*********** MANUEL D'UTILISATION ***********/
-/*                                          */
-/*  Pour lancer  l'installation  :  npm i   */
-/*                                          */
-/********************************************/
-
-
-/****LES MODULES NODEJS****/
-const fs = require('fs');
-const btoa =  require('btoa');
+const fs = require('fs').promises;
+const btoa = require('btoa');
 const AdmZip = require('adm-zip');
 
-// On récupère le fichier par l'agument 2 qui est à la troisième position
-/*
-    Défintion des options du script
-    Les deux premiers arguments sont vérrouillés
-    argv[0] -> correspond à node
-    argv[1] -> correspond au nom du script appelé
+const main = async () => {
+    const [sourceName, destinationNameB64, destinationNameZIP, destinationNameB64_ZIP] = process.argv.slice(2);
+    if (!sourceName) {
+      console.log("Vous n'avez saisi aucun argument");
+      return;
+    }
+    if (destinationNameB64 && !destinationNameZIP && !destinationNameB64_ZIP) {
+      await encodeBase64(sourceName, destinationNameB64);
+    } else if (destinationNameZIP && !destinationNameB64 && !destinationNameB64_ZIP) {
+      await zipFile(sourceName, destinationNameZIP);
+    } else if (destinationNameB64 && destinationNameZIP && !destinationNameB64_ZIP) {
+      await encodeBase64(sourceName, destinationNameB64);
+      await zipFile(sourceName, destinationNameZIP);
+    } else if (destinationNameB64_ZIP && !destinationNameB64 && !destinationNameZIP) {
+      await encodeZipFile(sourceName, destinationNameB64_ZIP);
+    } else {
+      console.log("Argument non reconnu");
+    }
+};
 
-*/
-const sourceName = process.argv[2];
+const encodeBase64 = async (sourceName, destinationName) => {
+  try {
+    const sourceFile = await fs.readFile(sourceName);
+    const sourceFileEncoded = btoa(sourceFile);
+    await fs.writeFile(destinationName, sourceFileEncoded);
+    console.log(`Le fichier ${sourceName} a été encodé en base64 et sauvegardé sous le nom ${destinationName}`);
+  } catch (err) {
+    console.log(`Impossible d'encoder le fichier ${sourceName} en base64: ${err}`);
+  }
+};
 
-/****CREATION DU SYSTEME DE FLAG****/
-
-// Fonction de récupération des index des process
-function grab(flag)
-{
-    let index = process.argv.indexOf(flag);
-    return (index === -1) ? null : process.argv[index+1];
-}
-
-// Définition des flags pour l'encodage et le zippage
-const destinationNameB64 = grab('--base64');
-const destinationNameZIP = grab('--zip');
-const destinationNameB64_ZIP = grab('--base64_zip');
-
-/****POUR TESTER SI LE NOM DU FICHIER EST BIEN RECUPERE****/
-    /*
-    console.log(process.argv[2]);
-    */
-/**********************************************************/
-
-/****POUR TESTER LA POSITION DES ARGUMENTS****/
-    /*
-    process.argv.forEach( function(val, index){
-        
-        console.log(`${index}: ${val}`);
-
-    });
-    */
-/*********************************************/
-
-/****CAS D'UTILISATION DU PROGRAMME****/
-
-// Premier cas encodage en base64 mais pas de zip
-if( destinationNameB64 && !destinationNameZIP && !destinationNameB64_ZIP )
-{
-    console.log(`Vous allez encoder le fichier ${sourceName} en base64, il vous est aussi possible de le zipper !`);
-
-    // On lit le contenu de notre fichier
-    let sourceFile = fs.readFileSync(sourceName);
-
-    // On donne le chemin et le nouveau nom du fichier encodé
-    let sourceEncoded = `${destinationNameB64}`;
-
-    // On encode le fichier
-    let sourceFileEncoded = btoa(sourceFile);
-
-    // On écrit dans le dossier "results" le fichier .txt du du fichier encodé
-    fs.writeFileSync(sourceEncoded, sourceFileEncoded);
-}
-
-// Deuxième cas zippage du fichier mais pas d'encodage
-if( destinationNameZIP && !destinationNameB64 && !destinationNameB64_ZIP )
-{
-    console.log(`Vous allez zipper le fichier ${sourceName}, il vous est aussi d'encoder le fichier en base 64 !`);
-
-    // On lit le contenu de notre fichier
-    let sourceFile = fs.readFileSync(sourceName);
-
-    // On initialise l'objet archive
-    let zip = new AdmZip();
-
-    // On ajoute le fichier est son contenue à l'aide d'un Buffer
+const zipFile = async (sourceName, destinationName) => {
+  try {
+    const sourceFile = await fs.readFile(sourceName);
+    const zip = new AdmZip();
     zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
+    zip.writeZip(destinationName);
+    console.log(`Le fichier ${sourceName} a été zippé et sauvegardé sous le nom ${destinationName}`);
+  } catch (err) {
+    console.log(`Impossible de zipper le fichier ${sourceName}: ${err}`);
+  }
+};
 
-    // On zip le tout avec le nom de notre archive
-    zip.writeZip(destinationNameZIP);
-}
+const encodeZipFile = async (sourceName, destinationName) => {
+    try {
+        const sourceFile = await fs.readFile(sourceName);
+        const zip = new AdmZip();
+        zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
+        const sourceFileEncoded = btoa(zip.toBuffer());
+        await fs.writeFile(destinationName, sourceFileEncoded);
+        console.log(`Le fichier ${sourceName} a été encodé en base64 et sauvegardé sous le nom ${destinationName}`);
+    } catch (err) {
+        console.log(`Impossible d'encoder le fichier ${sourceName} en base64: ${err}`);
+    }
+};
 
-// Troisième cas encodage et zippage du fichier
-if( destinationNameB64 && destinationNameZIP && !destinationNameB64_ZIP )
-{
-    console.log(`Vous allez encoder et zipper le fichier ${sourceName}`);
-
-    // On lit le contenu de notre fichier
-    let sourceFile = fs.readFileSync(sourceName);
-
-    // On donne le chemin et le nouveau nouveau nom du fichier encodé
-    let sourceEncoded = `${destinationNameB64}`;
-
-    // On encode le fichier
-    let sourceFileEncoded = btoa(sourceFile);
-
-    // On écrit dans le dossier "results" le fichier .txt du fichier encodé
-    fs.writeFileSync(sourceEncoded, sourceFileEncoded);
-
-    // On initialise l'objet archive
-    let zip = new AdmZip();
-
-    // On ajoute le fichier et son contenu
-    zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
-
-    // On zip le tout avec le nom de notre archive
-    zip.writeZip(destinationNameZIP);
-}
-
-// Quatrième cas encodage du zip
-if( destinationNameB64_ZIP && !destinationNameB64 && !destinationNameZIP )
-{
-    console.log(`Vous allez encoder le fichier zip ${sourceName}`);
-
-    // On lit le contenu de notre pdf
-    let sourceFile = fs.readFileSync(sourceName);
-
-    // On donne le chemin et le nouveau nom du pdf encodé
-    let sourceEncoded = `${destinationNameB64_ZIP}`;
-
-    // On initialise l'objet archive
-    let zip = new AdmZip();
-
-    // On ajoute le fichier et son contenu
-    zip.addFile(sourceName, Buffer.alloc(sourceFile.length, sourceFile));
-
-    // On encode le pdf
-    let sourceFileEncoded = btoa(zip.toBuffer());
-
-    // On écrit dans le dossier results le fichier .txt du pdf encodé
-    fs.writeFileSync(sourceEncoded, sourceFileEncoded);
-}
-
-// S'il n'y a aucun argument
-if( !destinationNameB64 && !destinationNameZIP && !destinationNameB64_ZIP)
-{
-    console.log("Vous n'avez saisi aucun argument");
-}
+main();
